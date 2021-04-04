@@ -1,0 +1,66 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-style: italic;
+}
+.nav-custom{
+    width: 100%;
+    height: 8vh;
+    display: flex;
+    flex-direction: row;
+    z-index: 1;
+}
+.navbar-brand{
+    margin: 0 auto;
+}
+.login, .logout, .signup{
+    color: black;
+    border-radius: 2px;
+}
+.login{
+    position: absolute;
+    right: 15vw;
+}
+.signup, .logout{
+    position: absolute;
+    right: 5vw;
+}
+.page{
+    position: absolute;
+    top: 9vh;
+    width: 100%;
+    height: 120vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form{
+    position: relative;
+    top: 17%;
+    width: 50%;
+    border: 2px solid green;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: grey;
+}
+.input{
+    width: 55%;
+    text-align: center;
+    border-radius: 10px;
+}
+.input:focus{
+    outline: none;
+}
+.button{
+    width: 30%;
+}
+.error{
+    position: relative;
+    top: 30%;
+    left: 50;
+    width: 30%;
+    height: 2%;
+}
