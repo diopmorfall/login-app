@@ -20,7 +20,7 @@
 	
 ?>
 		<link rel="stylesheet" href="../css/style.css">
-        <title>Login App - Delete account Page</title>
+        <title>Login App - Unsubscribe Page</title>
 	</head>
     <body>
 	<?php include "../html/admin-navbar.html";?>

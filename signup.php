@@ -53,7 +53,7 @@
             <?php include "html/navbar.html";?>
             <div class="page">
                 <h3 class="slogan">Sign up now to have an account !</h3>
-                <form class="form updating-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+                <form class="form signup-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                     <?php if(isset($_GET['message'])){ /*displaying the messages*/?>
                         <div class="message alert alert-danger" role="alert">
                             <?php echo print_message($_GET['message']); ?>
@@ -66,7 +66,7 @@
                     <label for="rep-psw">Repeat password: </label>
                     <input id ="rep-psw" class="input" type="password" name="rep-password" placeholder="Repeat your password"><br><br>
                     <input class="btn btn-primary button" type="submit" value="Sign up"><br>
-                    <a href="login.php">Click here if you already have an account to login</a>
+                    <a href="login.php">Click here to log into your account</a>
                 </form>
             </div>
             <?php include "html/footer.html";?>

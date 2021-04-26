@@ -68,6 +68,13 @@
                 $message = "Your account information has been updated";
                 break;
 
+            case 'updated-username':
+                $message = "Your username has been updated";
+                break;
+
+            case 'updated-psw':
+                $message = "Your password has been updated";
+                break;
             //? signup, login and edit message
 
             case 'missing-data': 

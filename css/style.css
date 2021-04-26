@@ -6,6 +6,9 @@
     text-align: center;
     color: white;
 }
+body{
+    background-color: #83b8f1;
+}
 .nav-custom{
     width: 100%;
     height: 8vh;
@@ -19,35 +22,14 @@
     margin: 0 auto;
     color: white !important;
 }
-.login, .logout, .signup, .button, .dropdown, .cancel{
+.login, .signup, .button, .dropdown, .cancel{
     background-color: #83b8f1;
     border-radius: 6px;
     border: 1px solid white;
 }
-.dropdown{
-    position: absolute;
-    right: 15vw;
-    width: 15%;
-    border: 2px solid white;
-}
-.dropdown:hover, .dropdown:focus{
-    border: 2px solid #6390c0;
-}
-.dropdown-toggle{
-    width: 100%;
-    border: none;
-    background-color: #83b8f1;
-}
-.dropdown-toggle:hover, .dropdown-toggle:focus, .dropdown-item:hover{
-    background-color: #6390c0;
-}
-.dropdown-menu{
-    width: 100%;
-    background-color: #83b8f1 !important;
-}
-.dropdown-item{
-    color: white;
-    text-align: center;
+
+.nav-custom > .btn{
+    width: 7%;
 }
 .login{
     position: absolute;
@@ -57,11 +39,37 @@
     position: absolute;
     right: 5vw;
 }
+.dropdown{
+    position: absolute;
+    right: 10vw;
+    width: 15%;
+    border: none;
+}
+.dropdown-toggle{
+    width: 100%;
+    border: none;
+    background-color: #83b8f1;
+}
+.dropdown-toggle:hover, .dropdown-toggle:active, .dropdown-item:hover{
+    background-color: #6390c0;
+    border: none !important;
+}
+.dropdown-menu{
+    width: 100%;
+    background-color: #83b8f1 !important;
+}
+.dropdown-item{
+    color: white;
+    text-align: center;
+}
+.home-dropdown{
+    display: none;
+}
 .page{
     position: absolute;
     top: 8vh;
     width: 100%;
-    height: 120vh;
+    height: 105vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -73,9 +81,9 @@
 }
 .form{
     position: relative;
-    top: 17%;
-    width: 36%;
-    height: 50%;
+    top: 10%;
+    width: 60%;
+    height: 70%;
     border: 2px solid #6390c0;
     border-radius: 15px;
     display: flex;
@@ -83,14 +91,8 @@
     align-items: center;
     background-color: #83b8f1;
 }
-.updating-form{
-    height: 55%;
-}
 .form > label:first-of-type{
     margin-top: 15%;
-}
-.updating-form > label:first-of-type{
-    margin-top: 20%;
 }
 .form > label:last-of-type{
     margin-top: 3%;
@@ -103,12 +105,12 @@
     bottom: 15%;
 }
 .form > a:last-of-type{
-    margin-top: 5%;
+    margin-top: 10%;
     bottom: 5%;
 }
 .input{
-    width: 65%;
-    height: 7%;
+    width: 60%;
+    height: 6%;
     text-align: center;
     border-radius: 6px;
     border: 1px solid white;
@@ -118,21 +120,18 @@
     outline: none;
     background-color: #6390c0;
 }
-.signup-form > .input{
-    height: 6%;
-}
 .button{
     width: 25%;
     border-radius: 8px;
     border: 1px solid white;
 }
-.button:hover, .login:hover, .signup:hover{
+.button:hover, .login:hover, .signup:hover, .button:active, .login:active, .signup:active{
     background-color: #6390c0;
     border: 2px solid #6390c0;
 }
 .message{
     position: absolute;
-    top: 0;
+    top: 2%;
     width: 90%;
     height: 5%;
     background: none !important;
@@ -150,7 +149,7 @@
     position: absolute;
     top: 25%;
     width: 100%;
-    height: 5%;
+    height: 6%;
 }
 .delete > .btn{
     width: 15%;
@@ -160,9 +159,273 @@
     margin-right: 5%;
 }
 .cancel{
-    margin-left: 5%;
+    margin-left: 20%;
     color: white;
 }
 .cancel:hover{
     text-decoration: none;
+}
+
+@media only screen and (min-device-width: 851px) and (max-device-width: 1200px) and (orientation: landscape){ /*tablet landscape*/
+    .nav-custom{
+        height: 8vh;
+    }
+
+    .nav-custom > .btn{
+        width: 8%;
+    }
+
+    .page{
+        height: 115vh;
+    }
+
+    .slogan{
+        font-size: 2.2vw;
+    }
+
+    .form{
+        width: 80%;
+        height: 60%;
+    }
+
+    .signup-form{
+        height: 75%;
+    }
+
+    .form > label:first-of-type{
+        margin-top: 10%;
+    }
+
+    .input{
+        height: 7%;
+    }
+
+    .message{
+        top: 0;
+        font-size: 1.9vw;    
+    }
+
+    .form > a{
+        font-size: 1.9vw;
+    }
+
+    .delete > .btn{
+        width: 20%;
+    }
+
+    .delete > .button:first-of-type{
+        margin-right: 0;
+    }
+    .cancel{
+        margin-left: 10%;
+    }
+}
+
+@media only screen and (min-device-width: 551px) and (max-device-width: 920px) and (orientation: portrait){ /*big mobile and tablet portrait*/
+    .login, .signup{
+        display: none;
+    }
+
+    .dropdown{
+        display: block;
+        right: 3%;
+        width: 26%;
+    }
+
+    .dropdown, .dropdown-toggle{
+        background-color: #83b8f1 !important;
+    }
+
+    .dropdown-menu{
+        width: 50%;
+    }
+
+    .page{
+        height: 120vh;
+    }
+
+    .slogan{
+        font-size: 2.8vw;
+    }
+
+    .form{
+        width: 80%;
+        height: 60%;
+    }
+
+    .form > label:first-of-type{
+        margin-top: 15%;
+    }
+
+    .message{
+        top: 0;
+        font-size: 2.6vw;    
+    }
+
+    .form > a{
+        font-size: 2.4vw;
+    }
+
+    .delete > .btn{
+        width: 22%;
+    }
+
+    .delete > .button:first-of-type{
+        margin-right: 0;
+    }
+    .cancel{
+        margin-left: 10%;
+    }
+}
+
+/*sborda: se la larghezza è maggiore dell'altezza, prende questo stile e mixa. Deve essere SOLO per mobile landscape */
+@media only screen and (min-device-width: 450px) and (max-device-width: 850px) and (orientation: landscape){ /*mobile landscape*/
+    .nav-custom{
+        height: 13.5vh;
+    }
+
+    .login, .signup{
+        display: none;
+    }
+
+    .dropdown{
+        display: block;
+        right: 3%;
+        width: 26%;
+    }
+
+    .dropdown, .dropdown-toggle{
+        background-color: #83b8f1 !important;
+    }
+
+    .dropdown-menu{
+        width: 50%;
+    }
+
+    .dropdown-item{
+        text-align: center;
+    }
+
+    .page{
+        height: 170vh;
+    }
+
+    .slogan{
+        font-size: 2.8vw;
+    }
+
+    .form{
+        width: 80%;
+        height: 70%;
+    }
+
+    .signup-form{
+        height: 70%;
+    }
+
+    .form > label:first-of-type{
+        margin-top: 12%;
+    }
+
+    .message{
+        top: 0;
+        font-size: 2.1vw;    
+    }
+
+    .form > a{
+        font-size: 2.3vw;
+    }
+
+    .delete{
+        top: 25%;
+        height: 40%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .delete > .btn{
+        width: 30%;
+        height: 15%;
+    }
+    .delete > .button:first-of-type{
+        margin-right: 0;
+    }
+    .cancel{
+        margin-left: 10%;
+    }
+}
+
+@media only screen and (max-device-width: 550px) and (orientation: portrait){ /*small mobile portrait*/
+    .navbar-brand{
+        position: absolute;
+        left: 5%;
+        font-size: 16px;
+    }
+
+    .login, .signup{
+        display: none;
+    }
+
+    .dropdown{
+        display: block;
+        right: 3%;
+        width: 26%;
+    }
+
+    .dropdown, .dropdown-toggle{
+        background-color: #83b8f1 !important;
+    }
+
+    .dropdown-menu{
+        width: 50%;
+    }
+    .dropdown-item{
+        text-align: left;
+    }
+
+    .slogan{
+        font-size: 3.8vw;
+    }
+
+    .page{
+        height: 110vh;
+    }
+
+    .form{
+        width: 80%;
+    }
+
+    .signup-form, .login-form{
+        height: 65%;
+    }
+
+    .form > label:first-of-type{
+        margin-top: 20%;
+    }
+
+    .message{
+        top: 0;
+        font-size: 3vw;    
+    }
+
+    .form > a{
+        font-size: 3vw;    
+    }
+
+    .delete{
+        height: 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .delete > .btn{
+        width: 40%;
+        height: 15%;
+    }
+    .delete > .button:first-of-type{
+        margin-right: 0;
+    }
+    .cancel{
+        margin-left: 10%;
+    }
 }

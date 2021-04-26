@@ -30,7 +30,7 @@
                                 WHERE user_name = '$current_user_name'";
                             $update = mysqli_query($con, $query);
                             $_SESSION['user_name'] = $new_user_name;
-                            header("Location: edit.php?message=updated-data");
+                            header("Location: edit.php?message=updated-username");
                         } else {
                             header("Location: edit.php?message=username-found");
                         }
@@ -49,7 +49,7 @@
                             SET password = '$new_password'
                             WHERE user_name = '$current_user_name'";
                         $update = mysqli_query($con, $query);
-                        header("Location: edit.php?message=updated-data");
+                        header("Location: edit.php?message=updated-psw");
                     } else { //? the password entered in the fields are different
                         header("Location: edit.php?message=different-passwords");
                     }
@@ -100,8 +100,8 @@
     <body>
 	<?php include "../html/admin-navbar.html";?>
 		<div class="page">
-            <h3 class="slogan"><?php echo $user_data['user_name'];?>, edit your account informations now !</h3>
-            <form class="form updating-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+            <h3 class="slogan"><?php echo $user_data['user_name'];?>, edit your account informations here !</h3>
+            <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                 <?php if(isset($_GET['message'])){ /*displaying the messages*/?>
                     <div class="message alert alert-danger" role="alert">
                         <?php echo print_message($_GET['message']); ?>

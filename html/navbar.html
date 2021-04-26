@@ -1,5 +1,17 @@
 <nav class="nav-custom navbar navbar-expand-lg navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="index.php">Login App</a>
+    <a class="navbar-brand" href="login.php">Login App</a>
     <a class="btn btn-primary login" href="login.php" role="button">Login</a>
     <a class="btn btn-primary signup" href="signup.php" role="button">Signup</a>
+
+    <!-- only for responsive -->
+
+    <div class="dropdown home-dropdown">
+    	<button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        	Account
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="login.php">Login</a>
+            <a class="dropdown-item" href="signup.php">Signup</a>
+        </div>
+    </div>
 </nav>

@@ -42,7 +42,7 @@
             <?php include "html/navbar.html";?>
             <div class="page">
                 <h3 class="slogan">Return in your account now !</h3>
-                <form class="form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
+                <form class="form login-form" method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>">
                     <?php if(isset($_GET['message'])){ ?>
                         <div class="message alert alert-danger" role="alert">
                             <?php echo print_message($_GET['message']); ?>
@@ -53,7 +53,7 @@
                     <label for="psw">Password: </label>
                     <input id ="psw" class="input" type="password" name="password" placeholder="Enter your password"><br><br>
                     <input class="btn btn-primary button" type="submit" value="Login"><br>           
-                    <a href="signup.php">Click here if you don't already have an account to signup</a>
+                    <a href="signup.php">Click here to create an account</a><br>
                     <a href="recover.php">Forgot your password ? Click here to recover it</a>
                 </form>
             </div>

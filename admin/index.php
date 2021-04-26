@@ -6,7 +6,11 @@
 	include "../function/connection.php";
     include "../function/functions.php";
 
-    $user_data = check_login($con);
+	$user_data = check_login($con);
+	
+	$timestamp = strtotime($user_data['date']);
+	$date = date("l jS \of F Y", $timestamp);
+	$time = date("H:i:s", $timestamp);
 	
 ?>
 		<link rel="stylesheet" href="../css/style.css">
@@ -18,6 +22,8 @@
 			<br>
 			<h4>Welcome back, <?php echo $user_data['user_name'];?> !</h4><br>
 			<h5>This is your profile page!</h5>
+			<br>
+			<h6>You're a member since <?php echo $date . " at " . $time;?></h6>
 		</div>
 		
 		<?php include "../html/footer.html";?>
