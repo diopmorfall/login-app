@@ -11,9 +11,9 @@
 
 
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $new_user_name = validate_strings($_POST["new-username"]);
-            $new_password = validate_strings($_POST["new-password"]);
-            $rep_password = validate_strings($_POST["rep-password"]);
+            $new_user_name = validate_strings($_POST["new-username"], $con);
+            $new_password = validate_strings($_POST["new-password"], $con);
+            $rep_password = validate_strings($_POST["rep-password"], $con);
             
             //todo: refactor this, it's a bit ugly (maybe in a function)
             if(!empty($new_user_name) && empty($new_password) && empty($rep_password)){ //? if the username is not empty but the passwords are

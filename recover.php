@@ -9,9 +9,9 @@
     if(!isset($_SESSION['user_name'])) {  //? if the user is not logged in yet
  
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $user_name = validate_strings($_POST["username"]);
-            $password = validate_strings($_POST["password"]);
-            $rep_password = validate_strings($_POST["rep-password"]);
+            $user_name = validate_strings($_POST["username"], $con);
+            $password = validate_strings($_POST["password"], $con);
+            $rep_password = validate_strings($_POST["rep-password"], $con);
 
             if(!empty($user_name) && !empty($password) && !empty($rep_password)){ //? checking if the values are empty
                 $check_user_query = "SELECT user_name

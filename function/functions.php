@@ -20,11 +20,10 @@
 
     // sanitization and validation
 
-    function validate_strings($string) {
-        $string = trim($string);
-        $string = stripslashes($string);
-        $string = htmlspecialchars($string);
-        return filter_var($string, FILTER_SANITIZE_STRING);       
+    function validate_strings($string, $con) {
+        $string = mysqli_real_escape_string($con, $string); //? prevents from SQL Injection
+        $string = htmlspecialchars(stripslashes(trim($string)));
+        return filter_var($string, FILTER_SANITIZE_STRING);     
     }
 
     function print_message($msg_code) { //? displaying the errors or messages in the login or signup page
@@ -93,5 +92,3 @@
         }
         return $message;
     }
-
-    //todo: Style the pages

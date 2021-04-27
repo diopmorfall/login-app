@@ -8,8 +8,8 @@
     if(!isset($_SESSION['user_name'])) {  //? if the user is not logged in yet
  
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $user_name = validate_strings($_POST["username"]);
-            $password = validate_strings($_POST["password"]);
+            $user_name = validate_strings($_POST["username"], $con);
+            $password = validate_strings($_POST["password"], $con);
 
             if(!empty($user_name) && !empty($password)){ // if there are some values inserted
                 //read from the database
