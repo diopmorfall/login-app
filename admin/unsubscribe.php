@@ -9,12 +9,13 @@
 	$user_name = $user_data['user_name'];
 	
 	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		$query = "DELETE FROM users WHERE user_name = '$user_name'";
-		if(mysqli_query($con, $query)){
+		try{
+			$query = $con->prepare("DELETE FROM users WHERE user_name = :user_name");
+			$query->execute(['user_name'=>$user_name]);
 			unset($_SESSION['user_name']);
 			header("Location: ../login.php?message=unsubscribed");
-		} else {
-			echo "Error in deleting: " . mysqli_error($con);
+		} catch(PDOException $error){
+			echo "Error in unsubscribing: " . $error->getMessage();
 		}
 	}
 	

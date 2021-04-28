@@ -3,15 +3,11 @@
     function check_login($con) {
         if(isset($_SESSION['user_name'])){ // superglobal variable
             $user_name = $_SESSION['user_name'];
-            $query = "SELECT *
-                        FROM users
-                        WHERE user_name = '$user_name'
-                        LIMIT 1";
+            $query = $con->prepare("SELECT * FROM  users WHERE user_name = ? LIMIT 1");
+            $query->execute([$user_name]);
 
-            $result = mysqli_query($con, $query);
-
-            if(mysqli_num_rows($result) > 0) {
-                return mysqli_fetch_assoc($result);
+            if($query->rowCount() === 1){
+                return ($query->fetch());
             }
         } else { // redirect to login page
             header("Location: ../login.php");
@@ -75,10 +71,17 @@
             case 'updated-psw':
                 $message = "Your password has been updated";
                 break;
+
             //? signup, login and edit message
 
             case 'missing-data': 
                 $message = "Please insert some valid data, username and password are required";
+                break;
+            
+            //? recover account message
+
+            case 'successfully-recovered':
+                $message = "Your password has been successfully changed, you can try to login again";
                 break;
 
             //? delete account message
@@ -94,4 +97,3 @@
         return $message;
     }
 
-    //todo: Style the pages

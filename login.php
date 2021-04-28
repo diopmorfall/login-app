@@ -13,14 +13,11 @@
 
             if(!empty($user_name) && !empty($password)){ // if there are some values inserted
                 //read from the database
-                $query = "SELECT *
-                            FROM  users
-                            WHERE user_name = '$user_name'
-                            LIMIT 1";
-                $result = mysqli_query($con, $query);
+                $query = $con->prepare("SELECT * FROM  users WHERE user_name = :user_name LIMIT 1");
+                $query->execute(['user_name'=>$user_name]);
 
-                if(mysqli_num_rows($result) === 1){ // if there's a user with $user_name
-                    $user_data = mysqli_fetch_assoc($result);
+                if($query->rowCount() === 1){ // if there's a user with $user_name
+                    $user_data = $query->fetch();
                     if($user_data['password'] === $password){ // if the password is correct
                         $_SESSION['user_name'] = $user_data['user_name']; // assigning the session to $user_name
                         header("Location: admin/index.php"); //redirect to the account page

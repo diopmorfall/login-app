@@ -15,16 +15,14 @@
             if(!empty($user_name) && !empty($password) && !empty($rep_password)){ //? checking if the values are empty
                 if(!is_numeric($user_name)){ // if the username is not a number
                     if(strlen($user_name) <= 15){
-                        $check_user_query = "SELECT user_name
-                                                FROM users
-                                                WHERE user_name = '$user_name'";
-                        $check = mysqli_query($con, $check_user_query);
+                        $check_user = $con->prepare("SELECT user_name FROM users WHERE user_name = ?");
+                        $check_user->execute([$user_name]);
                             
-                        if(mysqli_num_rows($check) === 0){ //? check if there is already a username with that name
+                        if($check_user->rowCount() === 0){ //? check if there is already a username with that name
                             if (strlen($password) >= 8 && strlen($password) <= 12){
                                 if ($rep_password === $password){
-                                    $query = "INSERT INTO users (user_name, password) VALUES ('$user_name', '$password')";
-                                    mysqli_query($con, $query);
+                                    $query = $con->prepare("INSERT INTO users (user_name, password) VALUES (?, ?)");
+                                    $query->execute([$user_name, $password]);
                                     header("Location: login.php");
                                 } else { //? the password entered in the fields are different
                                     header("Location: signup.php?message=different-passwords");

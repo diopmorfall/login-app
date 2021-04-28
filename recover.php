@@ -14,19 +14,15 @@
             $rep_password = validate_strings($_POST["rep-password"]);
 
             if(!empty($user_name) && !empty($password) && !empty($rep_password)){ //? checking if the values are empty
-                $check_user_query = "SELECT user_name
-                                        FROM users
-                                        WHERE user_name = '$user_name'";
-                $check = mysqli_query($con, $check_user_query);
+                $check_user = $con->prepare("SELECT user_name FROM users WHERE user_name = :user_name");
+                $check_user->execute(['user_name'=>$user_name]);
                             
-                if(mysqli_num_rows($check) === 1){ //? check if there is already a username with that name
+                if($check_user->rowCount() === 1){ //? check if there is already a username with that name
                     if (strlen($password) >= 8 && strlen($password) <= 12){
                         if ($rep_password === $password){
-                            $query = "UPDATE users
-                                    SET password = '$password'
-                                    WHERE user_name = '$user_name'";
-                            $update = mysqli_query($con, $query);
-                            header("Location: login.php?");
+                            $query = $con->prepare("UPDATE users SET password = ? WHERE user_name = ?");
+                            $query->execute([$password, $user_name]);
+                            header("Location: login.php?message=successfully-recovered");
                         } else { //? the password entered in the fields are different
                             header("Location: recover.php?message=different-passwords");
                         }

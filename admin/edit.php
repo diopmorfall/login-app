@@ -15,20 +15,16 @@
             $new_password = validate_strings($_POST["new-password"]);
             $rep_password = validate_strings($_POST["rep-password"]);
             
-            //todo: refactor this, it's a bit ugly (maybe in a function)
+            //todo: try to refactor this, it's a bit ugly (maybe in a function)
             if(!empty($new_user_name) && empty($new_password) && empty($rep_password)){ //? if the username is not empty but the passwords are
                 if(!is_numeric($new_user_name)){ // if the username is not a number
                     if(strlen($new_user_name) <= 15){
-                        $check_user_query = "SELECT user_name
-                                                FROM users
-                                                WHERE user_name = '$new_user_name'";
-                        $check = mysqli_query($con, $check_user_query);
+                        $check_user = $con->prepare("SELECT user_name FROM users WHERE user_name = ?");
+                        $check_user->execute([$new_user_name]);
                             
-                        if(mysqli_num_rows($check) === 0){ //? check if there is already a username with that name
-                            $query = "UPDATE users
-                                SET user_name = '$new_user_name'
-                                WHERE user_name = '$current_user_name'";
-                            $update = mysqli_query($con, $query);
+                        if($check_user->rowCount() === 0){ //? check if there is already a username with that name
+                            $query = $con->prepare("UPDATE users SET user_name = ? WHERE user_name = ?");
+                            $query->execute([$new_user_name, $current_user_name]);
                             $_SESSION['user_name'] = $new_user_name;
                             header("Location: edit.php?message=updated-username");
                         } else {
@@ -45,10 +41,8 @@
             else if(empty($new_user_name) && !empty($new_password) && !empty($rep_password)){ //? if the username is empty but the passwords aren't
                 if (strlen($new_password) >= 8 && strlen($new_password) <= 12){
                     if ($rep_password === $new_password){
-                        $query = "UPDATE users
-                            SET password = '$new_password'
-                            WHERE user_name = '$current_user_name'";
-                        $update = mysqli_query($con, $query);
+                        $query = $con->prepare("UPDATE users SET password = ? WHERE user_name = ?");
+                        $query->execute([$new_password, $current_user_name]);
                         header("Location: edit.php?message=updated-psw");
                     } else { //? the password entered in the fields are different
                         header("Location: edit.php?message=different-passwords");
@@ -57,21 +51,18 @@
                     header("Location: edit.php?message=password-length-not-valid");
                 }
             }
+
             else if(!empty($new_user_name) && !empty($new_password) && !empty($rep_password)){ //? all values entered
                 if(!is_numeric($new_user_name)){ // if the username is not a number
                     if(strlen($new_user_name) <= 15){
-                        $check_user_query = "SELECT user_name
-                                                FROM users
-                                                WHERE user_name = '$new_user_name'";
-                        $check = mysqli_query($con, $check_user_query);
+                        $check_user = $con->prepare("SELECT user_name FROM users WHERE user_name = ?");
+                        $check_user->execute([$new_user_name]);
                             
-                        if(mysqli_num_rows($check) === 0){ //? check if there is already a username with that name
+                        if($check_user->rowCount() === 0){ //? check if there is already a username with that name
                             if (strlen($new_password) >= 8 && strlen($new_password) <= 12){
                                 if ($rep_password === $new_password){
-                                    $query = "UPDATE users
-                                        SET password = '$new_password', user_name = '$new_user_name'
-                                        WHERE user_name = '$current_user_name'";
-                                    $update = mysqli_query($con, $query);
+                                    $query = $con->prepare("UPDATE users SET user_name = ?, password = ? WHERE user_name = ?");
+                                    $query->execute([$new_user_name, $new_password, $current_user_name]);
                                     $_SESSION['user_name'] = $new_user_name;
                                     header("Location: edit.php?message=updated-data");
                                 } else { //? the password entered in the fields are different
